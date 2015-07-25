@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+// MARK: - TopStoriesViewController class
 class TopStoriesViewController: UITableViewController {
+    // MARK: Properties
+    
+    // MARK: View lifecycle methods
+}
+
+// MARK: - Helper methods extension
+extension TopStoriesViewController {
+    // MARK: Methods
     
 }

@@ -15,6 +15,7 @@
 		68FF1F7A1B63976200D31571 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68FF1F781B63976200D31571 /* LaunchScreen.storyboard */; };
 		68FF1F851B63976200D31571 /* Hacker_News_ReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FF1F841B63976200D31571 /* Hacker_News_ReaderTests.swift */; };
 		68FF1F901B63976200D31571 /* Hacker_News_ReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FF1F8F1B63976200D31571 /* Hacker_News_ReaderUITests.swift */; };
+		A90092538845216D06E67E6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C206533D1D87CA21C314B9EF /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,9 @@
 		68FF1F8B1B63976200D31571 /* Hacker News ReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hacker News ReaderUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68FF1F8F1B63976200D31571 /* Hacker_News_ReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hacker_News_ReaderUITests.swift; sourceTree = "<group>"; };
 		68FF1F911B63976200D31571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C206533D1D87CA21C314B9EF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC8D492792B886E77F566675 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		EA67F65AD46D26011421A891 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A90092538845216D06E67E6F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +88,8 @@
 				68FF1F831B63976200D31571 /* Hacker News ReaderTests */,
 				68FF1F8E1B63976200D31571 /* Hacker News ReaderUITests */,
 				68FF1F6A1B63976200D31571 /* Products */,
+				B812E2F2DA9878683E169868 /* Pods */,
+				DED92AE3525493149372EDA0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +135,23 @@
 			path = "Hacker News ReaderUITests";
 			sourceTree = "<group>";
 		};
+		B812E2F2DA9878683E169868 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA67F65AD46D26011421A891 /* Pods.debug.xcconfig */,
+				DC8D492792B886E77F566675 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DED92AE3525493149372EDA0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C206533D1D87CA21C314B9EF /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68FF1F941B63976200D31571 /* Build configuration list for PBXNativeTarget "Hacker News Reader" */;
 			buildPhases = (
+				7D7897F50B567C023CB403B6 /* Check Pods Manifest.lock */,
 				68FF1F651B63976200D31571 /* Sources */,
 				68FF1F661B63976200D31571 /* Frameworks */,
 				68FF1F671B63976200D31571 /* Resources */,
+				8060A2E5CE150E729009D19D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -252,6 +278,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7D7897F50B567C023CB403B6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8060A2E5CE150E729009D19D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		68FF1F651B63976200D31571 /* Sources */ = {
@@ -400,6 +459,7 @@
 		};
 		68FF1F951B63976200D31571 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA67F65AD46D26011421A891 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Hacker News Reader/Info.plist";
@@ -411,6 +471,7 @@
 		};
 		68FF1F961B63976200D31571 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC8D492792B886E77F566675 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Hacker News Reader/Info.plist";
@@ -487,6 +548,7 @@
 				68FF1F961B63976200D31571 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		68FF1F971B63976200D31571 /* Build configuration list for PBXNativeTarget "Hacker News ReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +557,7 @@
 				68FF1F991B63976200D31571 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		68FF1F9A1B63976200D31571 /* Build configuration list for PBXNativeTarget "Hacker News ReaderUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +566,7 @@
 				68FF1F9C1B63976200D31571 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68C09A421B6455D600525058 /* HNRItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C09A401B6455D600525058 /* HNRItem+CoreDataProperties.swift */; };
+		68C09A431B6455D600525058 /* HNRItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C09A411B6455D600525058 /* HNRItem.swift */; };
 		68FF1F6D1B63976200D31571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FF1F6C1B63976200D31571 /* AppDelegate.swift */; };
 		68FF1F6F1B63976200D31571 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FF1F6E1B63976200D31571 /* ViewController.swift */; };
 		68FF1F721B63976200D31571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68FF1F701B63976200D31571 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		68C09A401B6455D600525058 /* HNRItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HNRItem+CoreDataProperties.swift"; path = "Models/HNRItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		68C09A411B6455D600525058 /* HNRItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HNRItem.swift; path = Models/HNRItem.swift; sourceTree = "<group>"; };
 		68FF1F691B63976200D31571 /* Hacker News Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker News Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68FF1F6C1B63976200D31571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68FF1F6E1B63976200D31571 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		68C09A441B6455DA00525058 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				68C09A401B6455D600525058 /* HNRItem+CoreDataProperties.swift */,
+				68C09A411B6455D600525058 /* HNRItem.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		68FF1F601B63976200D31571 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +119,7 @@
 		68FF1F6B1B63976200D31571 /* Hacker News Reader */ = {
 			isa = PBXGroup;
 			children = (
+				68C09A441B6455DA00525058 /* Models */,
 				68FF1F6C1B63976200D31571 /* AppDelegate.swift */,
 				68FF1F6E1B63976200D31571 /* ViewController.swift */,
 				68FF1F701B63976200D31571 /* Main.storyboard */,
@@ -319,7 +333,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				68FF1F6F1B63976200D31571 /* ViewController.swift in Sources */,
+				68C09A431B6455D600525058 /* HNRItem.swift in Sources */,
 				68FF1F6D1B63976200D31571 /* AppDelegate.swift in Sources */,
+				68C09A421B6455D600525058 /* HNRItem+CoreDataProperties.swift in Sources */,
 				68FF1F751B63976200D31571 /* Hacker_News_Reader.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

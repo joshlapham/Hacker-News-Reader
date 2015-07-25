@@ -216,6 +216,7 @@
 		68FF1F611B63976200D31571 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Nerd Burger Labs";
 				TargetAttributes = {

@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		68C09A421B6455D600525058 /* HNRItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C09A401B6455D600525058 /* HNRItem+CoreDataProperties.swift */; };
 		68C09A431B6455D600525058 /* HNRItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C09A411B6455D600525058 /* HNRItem.swift */; };
+		68C09A461B64584000525058 /* TopStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C09A451B64584000525058 /* TopStoriesViewController.swift */; };
 		68FF1F6D1B63976200D31571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FF1F6C1B63976200D31571 /* AppDelegate.swift */; };
-		68FF1F6F1B63976200D31571 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FF1F6E1B63976200D31571 /* ViewController.swift */; };
 		68FF1F721B63976200D31571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68FF1F701B63976200D31571 /* Main.storyboard */; };
 		68FF1F751B63976200D31571 /* Hacker_News_Reader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68FF1F731B63976200D31571 /* Hacker_News_Reader.xcdatamodeld */; };
 		68FF1F771B63976200D31571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68FF1F761B63976200D31571 /* Assets.xcassets */; };
@@ -40,9 +40,9 @@
 /* Begin PBXFileReference section */
 		68C09A401B6455D600525058 /* HNRItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HNRItem+CoreDataProperties.swift"; path = "Models/HNRItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		68C09A411B6455D600525058 /* HNRItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HNRItem.swift; path = Models/HNRItem.swift; sourceTree = "<group>"; };
+		68C09A451B64584000525058 /* TopStoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopStoriesViewController.swift; path = "View Controllers/TopStoriesViewController.swift"; sourceTree = "<group>"; };
 		68FF1F691B63976200D31571 /* Hacker News Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker News Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68FF1F6C1B63976200D31571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		68FF1F6E1B63976200D31571 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		68FF1F711B63976200D31571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		68FF1F741B63976200D31571 /* Hacker_News_Reader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hacker_News_Reader.xcdatamodel; sourceTree = "<group>"; };
 		68FF1F761B63976200D31571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,6 +94,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		68C09A471B64584300525058 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				68C09A451B64584000525058 /* TopStoriesViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		68FF1F601B63976200D31571 = {
 			isa = PBXGroup;
 			children = (
@@ -120,8 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				68C09A441B6455DA00525058 /* Models */,
+				68C09A471B64584300525058 /* View Controllers */,
 				68FF1F6C1B63976200D31571 /* AppDelegate.swift */,
-				68FF1F6E1B63976200D31571 /* ViewController.swift */,
 				68FF1F701B63976200D31571 /* Main.storyboard */,
 				68FF1F761B63976200D31571 /* Assets.xcassets */,
 				68FF1F781B63976200D31571 /* LaunchScreen.storyboard */,
@@ -332,7 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68FF1F6F1B63976200D31571 /* ViewController.swift in Sources */,
+				68C09A461B64584000525058 /* TopStoriesViewController.swift in Sources */,
 				68C09A431B6455D600525058 /* HNRItem.swift in Sources */,
 				68FF1F6D1B63976200D31571 /* AppDelegate.swift in Sources */,
 				68C09A421B6455D600525058 /* HNRItem+CoreDataProperties.swift in Sources */,

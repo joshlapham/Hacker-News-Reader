@@ -14,10 +14,23 @@ class TopStoriesViewController: UITableViewController {
     // MARK: Properties
     
     // MARK: View lifecycle methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.title = "Top Stories"
+    }
 }
 
 // MARK: - Helper methods extension
 extension TopStoriesViewController {
     // MARK: Methods
+    // Fetch data for view
+    func fetchDataForView() {
+        
+    }
     
+    // Fetch top story IDs
+    func fetchTopStoryIDs() {
+        
+    }
 }

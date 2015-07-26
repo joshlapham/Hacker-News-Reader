@@ -250,16 +250,14 @@ extension TopStoriesViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // TODO: refactor this method once custom cell class is implemented
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        // Init cell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ItemCell
         
+        // Init cell data
         let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as! HNRItem
         
-        let idLabel = cell.viewWithTag(101) as! UILabel
-        let titleLabel = cell.viewWithTag(102) as! UILabel
-        
-        idLabel.text = cellData.itemId?.stringValue
-        titleLabel.text = cellData.title
+        // Configure cell
+        cell.configureCellWithData(cellData)
         
         return cell
     }

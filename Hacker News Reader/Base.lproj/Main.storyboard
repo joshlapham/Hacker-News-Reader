@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="44" id="XUG-uJ-inM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="44" id="XUG-uJ-inM" customClass="ItemCell" customModule="Hacker_News_Reader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XUG-uJ-inM" id="KSZ-aI-tSs">
@@ -42,6 +42,10 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="L0Y-R7-lxR" secondAttribute="bottom" constant="3.5" id="wa8-bd-sf9"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="itemId" destination="zJ5-Yo-wV8" id="P76-h5-p1o"/>
+                                    <outlet property="itemTitle" destination="L0Y-R7-lxR" id="yRJ-rE-la7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

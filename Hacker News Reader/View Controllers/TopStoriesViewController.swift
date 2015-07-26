@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+// MARK: - Constants
+// HN API keys
+let kApiKeyId = "id"
+let kApiKeyPosition = "position"
+let kApiKeyTypeStory = "story"
+
 // MARK: - TopStoriesViewController class
 class TopStoriesViewController: UITableViewController {
     // MARK: Properties
@@ -18,6 +24,8 @@ class TopStoriesViewController: UITableViewController {
         super.viewDidLoad()
         
         self.title = "Top Stories"
+        
+        self.fetchTopStoryIDs()
     }
 }
 
@@ -26,68 +34,65 @@ extension TopStoriesViewController {
     // MARK: Methods
     // Fetch data for view
     func fetchDataForView() {
-        
+        // TODO: implement
     }
     
     // Fetch top story IDs
     func fetchTopStoryIDs() {
-        // Number of items to fetch
-        let itemCountToFetch = 100
+        self.fetchTopStoryIDsSignal().subscribeNext({ (topItems: AnyObject?) -> Void in
+            //            print(topItems)
+            }) { () -> Void in
+                print("Finished fetching top story IDs")
+        }
+    }
+}
+
+// MARK: - ReactiveCocoa helper methods extension
+extension TopStoriesViewController {
+    // MARK: Methods
+    func fetchTopStoryIDsSignal() -> RACSignal {
+        let scheduler = RACScheduler(priority: RACSchedulerPriorityBackground)
         
-        // Init API URL
-        let hackerNewsAPIURL = "https://hacker-news.firebaseio.com/v0/topstories"
-        
-        // Init Firebase
-        let firebaseRef = Firebase(url: hackerNewsAPIURL)
-        
-        //            DDLogVerbose(@"%s - fetching top item IDs ..", __func__);
-        //
-        //            // Number of items to fetch
-        //            static NSUInteger itemCountToFetch = 100;
-        //
-        //            // Init API URL
-        //            NSString *hnApiUrl = @"https://hacker-news.firebaseio.com/v0/topstories";
-        //
-        //            // Init Firebase
-        //            Firebase *hnRef = [[Firebase alloc] initWithUrl:hnApiUrl];
-        //
-        //            // Fetch data
-        //            [hnRef observeSingleEventOfType:FEventTypeValue
-        //            withBlock:^(FDataSnapshot *snapshot) {
-        //            // Init topItems array
-        //            NSMutableArray *topItems = [NSMutableArray array];
-        //
-        //            // Loop over data to get top story IDs
-        //            for (FDataSnapshot *childSnap in snapshot.children) {
-        //            // Only fetch itemsCountToFetch
-        //            if (topItems.count == itemCountToFetch) {
-        //            break;
-        //            }
-        //
-        //            // Item position
-        //            NSString *topItemPosition = (NSString *)childSnap.name;
-        //
-        //            // Item ID
-        //            NSString *topItemId = [NSString stringWithFormat:@"%@", childSnap.value];
-        //
-        //            //                                  NSLog(@"%s - ITEM: %@; %@", __func__, topItemPosition, topItemId);
-        //
-        //            // Init item dict
-        //            NSDictionary *itemDict = @{
-        //            kApiKeyPosition : topItemPosition,
-        //            kApiKeyId : topItemId
-        //            };
-        //
-        //            // Add top story dict to topStories array
-        //            [topItems addObject:itemDict];
-        //            }
-        //            
-        //            DDLogVerbose(@"%s - top items count: %lu", __func__, (unsigned long)topItems.count);
-        //            
-        //            // Pass topItems array to block
-        //            block(topItems);
-        //            }];
-        
-        
+        return RACSignal.startLazilyWithScheduler(scheduler, block: { (subscriber: RACSubscriber!) -> Void in
+            // Number of items to fetch
+            let itemCountToFetch = 100
+            
+            // Init API URL
+            let hackerNewsAPIURL = "https://hacker-news.firebaseio.com/v0/topstories"
+            
+            // Init Firebase
+            let firebaseRef = Firebase(url: hackerNewsAPIURL)
+            
+            // Fetch data
+            firebaseRef.observeSingleEventOfType(FEventType.Value) { (snapshot: FDataSnapshot!) -> Void in
+                // Init topItems array
+                var topItems = NSMutableArray.new()
+                
+                // Loop over received data to get top story IDs
+                let enumerator = snapshot.children
+                
+                while let childSnap: FDataSnapshot = enumerator.nextObject() as! FDataSnapshot! {
+                    // Only fetch itemsCountToFetch
+                    if topItems.count == itemCountToFetch {
+                        break
+                    }
+                    
+                    // Item position in top 100
+                    let topItemPosition = childSnap.name
+                    
+                    // Item ID
+                    let topItemId = childSnap.value
+                    
+                    // Init item dict
+                    let itemDict = [kApiKeyPosition : topItemPosition, kApiKeyId : topItemId]
+                    
+                    // Add dict to topItems array
+                    topItems.addObject(itemDict)
+                }
+                
+                subscriber.sendNext(topItems)
+                subscriber.sendCompleted()
+            }
+        })
     }
 }

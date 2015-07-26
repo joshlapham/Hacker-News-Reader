@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5c9-4m-9lR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Top Stories View Controller-->
@@ -13,12 +14,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XUG-uJ-inM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="XUG-uJ-inM">
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XUG-uJ-inM" id="KSZ-aI-tSs">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0Y-R7-lxR">
+                                            <rect key="frame" x="47" y="8" width="48" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-Yo-wV8">
+                                            <rect key="frame" x="8" y="10" width="31" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="L0Y-R7-lxR" firstAttribute="leading" secondItem="zJ5-Yo-wV8" secondAttribute="trailing" constant="8" id="6RH-Cg-vpN"/>
+                                        <constraint firstItem="L0Y-R7-lxR" firstAttribute="top" secondItem="KSZ-aI-tSs" secondAttribute="topMargin" id="9P5-8B-9m8"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="zJ5-Yo-wV8" secondAttribute="leading" id="Dfq-Sw-fTT"/>
+                                        <constraint firstItem="zJ5-Yo-wV8" firstAttribute="centerY" secondItem="L0Y-R7-lxR" secondAttribute="centerY" id="XzS-kf-MVh"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="L0Y-R7-lxR" secondAttribute="bottom" constant="3.5" id="wa8-bd-sf9"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

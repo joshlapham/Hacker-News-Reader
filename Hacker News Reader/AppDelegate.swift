@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Pass managed object context to initial VC set in Storyboard
+        let navController = self.window?.rootViewController as! UINavigationController
+        let topStoriesVC = navController.topViewController as! TopStoriesViewController
+        topStoriesVC.managedObjectContext = self.managedObjectContext
+        
         return true
     }
 

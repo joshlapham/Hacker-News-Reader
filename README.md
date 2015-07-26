@@ -10,6 +10,10 @@ An iOS app for [Hacker News](https://news.ycombinator.com), using their [officia
 
 __NOTE__: this is still a work in progress.
 
+#### Screenshots
+
+![Top Stories view](Screenshots/top_stories.png?raw=true "Top Stories view")
+
 ### Installation
 
 This project targets __iOS 9__ and requires __Xcode 7__ to build.

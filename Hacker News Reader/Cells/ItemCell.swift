@@ -16,9 +16,11 @@ class ItemCell: UITableViewCell {
     
     // MARK: Awake from NIB (init) method
     override func awakeFromNib() {
-        // TODO: implement
-        
         // Style cell
+        self.itemTitle.numberOfLines = 0
+        // TODO: move this to a constant elsewhere and update calculation
+        let maxWidthForTitle = UIScreen.mainScreen().bounds.size.width - 100
+        self.itemTitle.preferredMaxLayoutWidth = maxWidthForTitle
     }
 }
 

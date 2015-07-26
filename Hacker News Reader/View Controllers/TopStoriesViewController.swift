@@ -60,6 +60,8 @@ class TopStoriesViewController: UITableViewController, NSFetchedResultsControlle
         // Setup tableView
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        // TODO: delete this eventually!
+        self.tableView.allowsSelection = false
         
         // Core Data fetch
         do {

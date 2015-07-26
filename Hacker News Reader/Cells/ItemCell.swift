@@ -11,6 +11,7 @@ import Foundation
 // MARK: - ItemCell class
 class ItemCell: UITableViewCell {
     // MARK: Properties
+    // TODO: update itemId property name
     @IBOutlet var itemId: UILabel!
     @IBOutlet var itemTitle: UILabel!
     @IBOutlet var itemDate: UILabel!
@@ -39,7 +40,7 @@ extension ItemCell {
     // MARK: Methods
     // Configure cell with data
     func configureCellWithData(cellData: HNRItem!) {
-//        self.itemId.text = cellData.itemId?.stringValue
+        self.itemId.text = cellData.topHundredPosition?.stringValue
         self.itemTitle.text = cellData.title
         self.itemDate.text = self.dateFormatter.stringFromDate(cellData.date!)
     }

@@ -22,26 +22,26 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0Y-R7-lxR">
-                                            <rect key="frame" x="28" y="8" width="37.5" height="24"/>
+                                            <rect key="frame" x="31.5" y="8" width="37.5" height="24"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-Yo-wV8">
-                                            <rect key="frame" x="8" y="10" width="12" height="20.5"/>
+                                            <rect key="frame" x="8" y="10" width="11.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxH-hW-VhT">
-                                            <rect key="frame" x="28" y="40" width="30.5" height="17"/>
+                                            <rect key="frame" x="31.5" y="40" width="30.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="L0Y-R7-lxR" firstAttribute="leading" secondItem="zJ5-Yo-wV8" secondAttribute="trailing" constant="8" id="6RH-Cg-vpN"/>
+                                        <constraint firstItem="L0Y-R7-lxR" firstAttribute="leading" secondItem="zJ5-Yo-wV8" secondAttribute="trailing" constant="12" id="6RH-Cg-vpN"/>
                                         <constraint firstItem="L0Y-R7-lxR" firstAttribute="top" secondItem="KSZ-aI-tSs" secondAttribute="topMargin" id="9P5-8B-9m8"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="zJ5-Yo-wV8" secondAttribute="leading" id="Dfq-Sw-fTT"/>
                                         <constraint firstItem="zJ5-Yo-wV8" firstAttribute="centerY" secondItem="L0Y-R7-lxR" secondAttribute="centerY" id="XzS-kf-MVh"/>

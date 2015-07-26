@@ -41,8 +41,8 @@ class TopStoriesViewController: UITableViewController, NSFetchedResultsControlle
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: "HNRItem")
         
-        // TODO: update key here
-        let sortDescriptor = NSSortDescriptor(key: "itemId", ascending: true)
+        // Sort by Item top 100 position
+        let sortDescriptor = NSSortDescriptor(key: "topHundredPosition", ascending: true)
         fetchRequest.sortDescriptors = [ sortDescriptor ]
         
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -94,7 +94,7 @@ extension TopStoriesViewController {
             if let topItems = topItems as? [AnyObject] {
                 for var itemDict in topItems {
                     // Fetch item
-                    self.fetchStory(itemDict[kApiKeyId] as! NSNumber)
+                    self.fetchStory(itemDict as! NSDictionary)
                 }
             }
             
@@ -108,7 +108,10 @@ extension TopStoriesViewController {
 extension TopStoriesViewController {
     // MARK: Methods
     // Fetch story with story ID method
-    func fetchStory(storyId: NSNumber) {
+    func fetchStory(itemDict: NSDictionary) {
+        let storyId = itemDict[kApiKeyId] as! NSNumber
+        let storyPosition = itemDict[kApiKeyPosition] as! NSNumber
+        
         // Init API URL
         let apiCallUrl = NSString(format: "https://hacker-news.firebaseio.com/v0/item/%@", storyId.stringValue) as String
         
@@ -156,6 +159,7 @@ extension TopStoriesViewController {
             item.url = storyUrl
             item.title = storyTitle
             item.date = storyDate
+            item.topHundredPosition = storyPosition
             
             // TODO: fix commented properties
             //            item.itemIsDeleted = isDeleted
@@ -172,11 +176,6 @@ extension TopStoriesViewController {
         //            item.childIds = storyChildIds;
         //            item.score = storyScore;
         //            item.pollPartIds = storyPollIds;
-        //
-        //            // Top hundred position
-        //            if (self.itemPosition) {
-        //            item.topHundredPosition = [NSNumber numberWithInteger:[self.itemPosition integerValue]];
-        //            }
         
         // Save to Core Data
         // TODO: refactor logic to only save after all items have been fetched
@@ -217,7 +216,10 @@ extension TopStoriesViewController {
                     }
                     
                     // Item position in top 100
-                    let topItemPosition = childSnap.name
+                    // NOTE - adjusting for 0-based index
+                    var positionAdjusted = Int(childSnap.name)!
+                    positionAdjusted = positionAdjusted + 1
+                    let topItemPosition = positionAdjusted
                     
                     // Item ID
                     let topItemId = childSnap.value

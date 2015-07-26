@@ -50,6 +50,13 @@ class TopStoriesViewController: UITableViewController, NSFetchedResultsControlle
         
         return frc
         }()
+    lazy var dateFormatter: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter.new()
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        return dateFormatter
+        }()
     
     // MARK: View lifecycle methods
     override func viewDidLoad() {
@@ -115,12 +122,15 @@ extension TopStoriesViewController {
             let storyUrl = snapshot.value[FirebaseAPIKey.storyUrl] as? String
             let storyTitle = snapshot.value[FirebaseAPIKey.storyTitle] as! String
             
+            // Item date
+            let storyTime = snapshot.value[FirebaseAPIKey.storyTime] as! NSNumber
+            let timeInterval = storyTime.doubleValue as NSTimeInterval
+            let storyDate = NSDate(timeIntervalSince1970: timeInterval)
+            
             // TODO: fix commented properties
             //            BOOL isDeleted = (BOOL)snapshot.value[@"deleted"];
             //            let isDeleted = snapshot.value[FirebaseAPIKey.isDeleted] as! Bool
             
-            //            let storyTime = snapshot.value[FirebaseAPIKey.storyTime] as! NSNumber
-            //            NSNumber *storyTime = snapshot.value[@"time"];
             
             //            let deadOrNot = snapshot.value[FirebaseAPIKey.deadOrNot] as! Bool
             //            BOOL deadOrNot = (BOOL)snapshot.value[@"dead"];
@@ -135,37 +145,30 @@ extension TopStoriesViewController {
             
             // Init HNRItem
             // TODO: init in private managed object context
-            var item = NSEntityDescription.insertNewObjectForEntityForName("HNRItem", inManagedObjectContext: self.managedObjectContext) as! HNRItem
+            let item = NSEntityDescription.insertNewObjectForEntityForName("HNRItem", inManagedObjectContext: self.managedObjectContext) as! HNRItem
             
             // Set properties
             item.itemId = storyId
-            // TODO: fix commented properties
-            //            item.itemIsDeleted = isDeleted
             item.itemType = storyType
             item.author = storyAuthor
-            //                item.date = storyTime
-            //            item.isDead = NSNumber(bool: deadOrNot)
-            //            item.parentId = storyParentId
             item.url = storyUrl
             item.title = storyTitle
+            item.date = storyDate
             
-            //            print(item)
+            // TODO: fix commented properties
+            //            item.itemIsDeleted = isDeleted
+            //            item.isDead = NSNumber(bool: deadOrNot)
+            //            item.parentId = storyParentId
         })
         
         // TODO: finish implementing these properties
         //            // Set details
-        //            item.itemId = storyId;
         //            item.itemIsDeleted = [NSNumber numberWithBool:isDeleted];
-        //            item.itemType = storyType;
-        //            item.author = storyAuthor;
-        //            item.date = [NSDate dateWithTimeIntervalSince1970:[storyTime doubleValue]];
         //            item.text = storyText;
         //            item.isDead = [NSNumber numberWithBool:deadOrNot];
         //            item.parentId = storyParentId;
         //            item.childIds = storyChildIds;
-        //            item.url = storyUrl;
         //            item.score = storyScore;
-        //            item.title = storyTitle;
         //            item.pollPartIds = storyPollIds;
         //
         //            // Top hundred position

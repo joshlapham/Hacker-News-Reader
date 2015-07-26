@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import SafariServices
 
 // MARK: - Constants
 // HN API keys
@@ -34,7 +35,7 @@ struct FirebaseAPIKey {
 }
 
 // MARK: - TopStoriesViewController class
-class TopStoriesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class TopStoriesViewController: UITableViewController, NSFetchedResultsControllerDelegate, SFSafariViewControllerDelegate {
     // MARK: Properties
     var managedObjectContext: NSManagedObjectContext!
     
@@ -69,8 +70,6 @@ class TopStoriesViewController: UITableViewController, NSFetchedResultsControlle
         // Setup tableView
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        // TODO: delete this eventually!
-        self.tableView.allowsSelection = false
         
         // Core Data fetch
         do {
@@ -238,6 +237,28 @@ extension TopStoriesViewController {
     }
 }
 
+// MARK: - SFSafariViewControllerDelegate methods extension
+extension TopStoriesViewController {
+    // MARK: Methods
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+// MARK: - UITableViewDelegate methods extension
+extension TopStoriesViewController {
+    // MARK: Methods
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Init cell data
+        let cellData = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HNRItem
+        
+        // Init Safari VC and present
+        let destinationViewController = SFSafariViewController(URL: NSURL(string: cellData.url!)!, entersReaderIfAvailable: true)
+        destinationViewController.delegate = self
+        self.presentViewController(destinationViewController, animated: true, completion: nil)
+    }
+}
+
 // MARK: - UITableViewDataSource delegate methods extension
 extension TopStoriesViewController {
     // MARK: Methods
@@ -250,7 +271,7 @@ extension TopStoriesViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController.sections {
+        if let sections = self.fetchedResultsController.sections {
             let currentSection = sections[section] as NSFetchedResultsSectionInfo
             return currentSection.numberOfObjects
         }
@@ -263,7 +284,7 @@ extension TopStoriesViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ItemCell
         
         // Init cell data
-        let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as! HNRItem
+        let cellData = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HNRItem
         
         // Configure cell
         cell.configureCellWithData(cellData)
@@ -291,7 +312,7 @@ extension TopStoriesViewController {
                 
             case .Insert:
                 tableView.insertSections(NSIndexSet(index: sectionIndex),
-                    withRowAnimation: UITableViewRowAnimation.Fade)
+                    withRowAnimation: UITableViewRowAnimation.Top)
                 
             case .Delete:
                 tableView.deleteSections(NSIndexSet(index: sectionIndex),
@@ -308,7 +329,7 @@ extension TopStoriesViewController {
         case .Insert:
             if let newIndexPath = newIndexPath {
                 tableView.insertRowsAtIndexPaths([newIndexPath],
-                    withRowAnimation:UITableViewRowAnimation.Fade)
+                    withRowAnimation:UITableViewRowAnimation.Top)
             }
             
         case .Delete:
@@ -319,12 +340,12 @@ extension TopStoriesViewController {
             
         case .Update:
             if let indexPath = indexPath {
-                tableView.cellForRowAtIndexPath(indexPath)
+                //                tableView.cellForRowAtIndexPath(indexPath)
                 
-                // TODO: update here once custom cell class implemented
-                //                if let cell = tableView.cellForRowAtIndexPath(indexPath) as? UITableViewCell! {
-                //                                configureCell(cell, withObject: object)
-                //                }
+                if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ItemCell! {
+                    let cellData = controller.objectAtIndexPath(indexPath) as! HNRItem
+                    cell.configureCellWithData(cellData)
+                }
             }
             
         case .Move:
@@ -333,7 +354,7 @@ extension TopStoriesViewController {
                     tableView.deleteRowsAtIndexPaths([indexPath],
                         withRowAnimation: UITableViewRowAnimation.Fade)
                     tableView.insertRowsAtIndexPaths([newIndexPath],
-                        withRowAnimation: UITableViewRowAnimation.Fade)
+                        withRowAnimation: UITableViewRowAnimation.Top)
                 }
             }
         }

@@ -209,7 +209,7 @@ extension TopStoriesViewController {
             // Fetch data
             firebaseRef.observeSingleEventOfType(FEventType.Value) { (snapshot: FDataSnapshot!) -> Void in
                 // Init topItems array
-                var topItems = NSMutableArray.new()
+                let topItems = NSMutableArray.new()
                 
                 // Loop over received data to get top story IDs
                 let enumerator = snapshot.children

@@ -12,9 +12,11 @@ import Foundation
 class ItemCell: UITableViewCell {
     // MARK: Properties
     // TODO: update itemId property name
-    @IBOutlet var itemId: UILabel!
-    @IBOutlet var itemTitle: UILabel!
-    @IBOutlet var itemDate: UILabel!
+    @IBOutlet weak var itemId: UILabel!
+    @IBOutlet weak var itemTitle: UILabel!
+    @IBOutlet weak var itemDate: UILabel!
+    @IBOutlet weak var commentCountView: UIView!
+    @IBOutlet weak var commentCount: UILabel!
     
     // TODO: move this from here!
     lazy var dateFormatter: NSDateFormatter = {
@@ -32,6 +34,12 @@ class ItemCell: UITableViewCell {
         // TODO: move this to a constant elsewhere and update calculation
         let maxWidthForTitle = UIScreen.mainScreen().bounds.size.width - 100
         self.itemTitle.preferredMaxLayoutWidth = maxWidthForTitle
+        
+        // Comment count
+        self.commentCountView.clipsToBounds = true
+        self.commentCountView.layer.cornerRadius = self.commentCountView.frame.size.width / 2
+        self.commentCountView.backgroundColor = UIColor.lightGrayColor()
+        self.commentCount.textColor = UIColor.whiteColor()
     }
 }
 
@@ -43,5 +51,8 @@ extension ItemCell {
         self.itemId.text = cellData.topHundredPosition?.stringValue
         self.itemTitle.text = cellData.title
         self.itemDate.text = self.dateFormatter.stringFromDate(cellData.date!)
+        if let childIds = cellData.childIds as? [AnyObject] {
+            self.commentCount.text = String(childIds.count)
+        }
     }
 }

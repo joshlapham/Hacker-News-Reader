@@ -131,10 +131,15 @@ extension TopStoriesViewController {
             let timeInterval = storyTime.doubleValue as NSTimeInterval
             let storyDate = NSDate(timeIntervalSince1970: timeInterval)
             
+            // Item child IDs
+            // NOTE - this is used for comment count
+            //            print(snapshot.value[FirebaseAPIKey.storyChildIds])
+            let storyChildIds = snapshot.value[FirebaseAPIKey.storyChildIds] as? [AnyObject]
+            //            print(storyChildIds)
+            
             // TODO: fix commented properties
             //            BOOL isDeleted = (BOOL)snapshot.value[@"deleted"];
             //            let isDeleted = snapshot.value[FirebaseAPIKey.isDeleted] as! Bool
-            
             
             //            let deadOrNot = snapshot.value[FirebaseAPIKey.deadOrNot] as! Bool
             //            BOOL deadOrNot = (BOOL)snapshot.value[@"dead"];
@@ -143,7 +148,6 @@ extension TopStoriesViewController {
             //            NSNumber *storyParentId = snapshot.value[@"parent"];
             
             //            NSString *storyText = snapshot.value[@"text"];
-            //            NSArray *storyChildIds = [[NSArray alloc] initWithArray:snapshot.value[@"kids"]];
             //            NSArray *storyPollIds = [NSArray arrayWithArray:snapshot.value[@"parts"]];
             //            NSNumber *storyScore = snapshot.value[@"score"];
             
@@ -159,11 +163,14 @@ extension TopStoriesViewController {
             item.title = storyTitle
             item.date = storyDate
             item.topHundredPosition = storyPosition
+            item.childIds = storyChildIds
             
             // TODO: fix commented properties
             //            item.itemIsDeleted = isDeleted
             //            item.isDead = NSNumber(bool: deadOrNot)
             //            item.parentId = storyParentId
+            
+            //            print(item)
         })
         
         // TODO: finish implementing these properties
@@ -172,7 +179,6 @@ extension TopStoriesViewController {
         //            item.text = storyText;
         //            item.isDead = [NSNumber numberWithBool:deadOrNot];
         //            item.parentId = storyParentId;
-        //            item.childIds = storyChildIds;
         //            item.score = storyScore;
         //            item.pollPartIds = storyPollIds;
         

@@ -16,10 +16,40 @@ let kApiKeyId = "id"
 let kApiKeyPosition = "position"
 let kApiKeyTypeStory = "story"
 
+// MARK: - Firebase HN API keys struct
+struct FirebaseAPIKey {
+    static let storyId = "id"
+    static let isDeleted = "deleted"
+    static let storyType = "type"
+    static let storyAuthor = "by"
+    static let storyTime = "time"
+    static let storyText = "text"
+    static let deadOrNot = "dead"
+    static let storyParentId = "parent"
+    static let storyChildIds = "kids"
+    static let storyUrl = "url"
+    static let storyScore = "score"
+    static let storyTitle = "title"
+    static let storyPollIds = "parts"
+}
+
 // MARK: - TopStoriesViewController class
-class TopStoriesViewController: UITableViewController {
+class TopStoriesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     // MARK: Properties
     var managedObjectContext: NSManagedObjectContext!
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        let fetchRequest = NSFetchRequest(entityName: "HNRItem")
+        
+        // TODO: update key here
+        let sortDescriptor = NSSortDescriptor(key: "itemId", ascending: true)
+        fetchRequest.sortDescriptors = [ sortDescriptor ]
+        
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        frc.delegate = self
+        
+        return frc
+        }()
     
     // MARK: View lifecycle methods
     override func viewDidLoad() {
@@ -30,6 +60,14 @@ class TopStoriesViewController: UITableViewController {
         // Setup tableView
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        // Core Data fetch
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("Error: \(error.localizedDescription)")
+            abort()
+        }
         
         // Fetch data for view
         self.fetchDataForView()
@@ -53,23 +91,6 @@ extension TopStoriesViewController {
                 print("Finished fetching top story IDs")
         }
     }
-}
-
-// MARK: - Firebase HN API keys struct
-struct FirebaseAPIKey {
-    static let storyId = "id"
-    static let isDeleted = "deleted"
-    static let storyType = "type"
-    static let storyAuthor = "by"
-    static let storyTime = "time"
-    static let storyText = "text"
-    static let deadOrNot = "dead"
-    static let storyParentId = "parent"
-    static let storyChildIds = "kids"
-    static let storyUrl = "url"
-    static let storyScore = "score"
-    static let storyTitle = "title"
-    static let storyPollIds = "parts"
 }
 
 // MARK: - ReactiveCocoa helper methods extension
@@ -126,9 +147,10 @@ extension TopStoriesViewController {
             item.url = storyUrl
             item.title = storyTitle
             
-            print(item)
+            //            print(item)
         })
         
+        // TODO: finish implementing these properties
         //            // Set details
         //            item.itemId = storyId;
         //            item.itemIsDeleted = [NSNumber numberWithBool:isDeleted];
@@ -148,6 +170,15 @@ extension TopStoriesViewController {
         //            if (self.itemPosition) {
         //            item.topHundredPosition = [NSNumber numberWithInteger:[self.itemPosition integerValue]];
         //            }
+        
+        // Save to Core Data
+        // TODO: refactor logic to only save after all items have been fetched
+        do {
+            try self.managedObjectContext.save()
+        } catch let error as NSError {
+            print("Error: \(error.localizedDescription)")
+            abort()
+        }
     }
     
     // Top story IDs signal
@@ -195,5 +226,109 @@ extension TopStoriesViewController {
                 subscriber.sendCompleted()
             }
         })
+    }
+}
+
+// MARK: - UITableViewDataSource delegate methods extension
+extension TopStoriesViewController {
+    // MARK: Methods
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if let sections = self.fetchedResultsController.sections {
+            return sections.count
+        }
+        
+        return 0
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section] as NSFetchedResultsSectionInfo
+            return currentSection.numberOfObjects
+        }
+        
+        return 0
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // TODO: refactor this method once custom cell class is implemented
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        
+        let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as! HNRItem
+        
+        let idLabel = cell.viewWithTag(101) as! UILabel
+        let titleLabel = cell.viewWithTag(102) as! UILabel
+        
+        idLabel.text = cellData.itemId?.stringValue
+        titleLabel.text = cellData.title
+        
+        return cell
+    }
+}
+
+// MARK: - Fetched results controller methods extension
+extension TopStoriesViewController {
+    // MARK: NSFetchedResultsControllerDelegate methods
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController,
+        didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
+        atIndex sectionIndex: Int,
+        forChangeType type: NSFetchedResultsChangeType) {
+            switch(type) {
+                
+            case .Insert:
+                tableView.insertSections(NSIndexSet(index: sectionIndex),
+                    withRowAnimation: UITableViewRowAnimation.Fade)
+                
+            case .Delete:
+                tableView.deleteSections(NSIndexSet(index: sectionIndex),
+                    withRowAnimation: UITableViewRowAnimation.Fade)
+                
+            default:
+                break
+            }
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch(type) {
+            
+        case .Insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRowsAtIndexPaths([newIndexPath],
+                    withRowAnimation:UITableViewRowAnimation.Fade)
+            }
+            
+        case .Delete:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath],
+                    withRowAnimation: UITableViewRowAnimation.Fade)
+            }
+            
+        case .Update:
+            if let indexPath = indexPath {
+                tableView.cellForRowAtIndexPath(indexPath)
+                
+                // TODO: update here once custom cell class implemented
+                //                if let cell = tableView.cellForRowAtIndexPath(indexPath) as? UITableViewCell! {
+                //                                configureCell(cell, withObject: object)
+                //                }
+            }
+            
+        case .Move:
+            if let indexPath = indexPath {
+                if let newIndexPath = newIndexPath {
+                    tableView.deleteRowsAtIndexPaths([indexPath],
+                        withRowAnimation: UITableViewRowAnimation.Fade)
+                    tableView.insertRowsAtIndexPaths([newIndexPath],
+                        withRowAnimation: UITableViewRowAnimation.Fade)
+                }
+            }
+        }
     }
 }

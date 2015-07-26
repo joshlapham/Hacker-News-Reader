@@ -12,6 +12,8 @@ __NOTE__: this is still a work in progress.
 
 ### Installation
 
+This project targets __iOS 9__ and requires __Xcode 7__ to build.
+
 #### CocoaPods
 
 This project uses [CocoaPods](http://cocoapods.org/).

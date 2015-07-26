@@ -37,6 +37,7 @@ struct FirebaseAPIKey {
 class TopStoriesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     // MARK: Properties
     var managedObjectContext: NSManagedObjectContext!
+    
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: "HNRItem")
         
@@ -50,6 +51,7 @@ class TopStoriesViewController: UITableViewController, NSFetchedResultsControlle
         
         return frc
         }()
+    
     lazy var dateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter.new()
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle

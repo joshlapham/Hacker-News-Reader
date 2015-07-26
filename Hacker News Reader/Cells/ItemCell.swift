@@ -13,6 +13,16 @@ class ItemCell: UITableViewCell {
     // MARK: Properties
     @IBOutlet var itemId: UILabel!
     @IBOutlet var itemTitle: UILabel!
+    @IBOutlet var itemDate: UILabel!
+    
+    // TODO: move this from here!
+    lazy var dateFormatter: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter.new()
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        return dateFormatter
+        }()
     
     // MARK: Awake from NIB (init) method
     override func awakeFromNib() {
@@ -29,7 +39,8 @@ extension ItemCell {
     // MARK: Methods
     // Configure cell with data
     func configureCellWithData(cellData: HNRItem!) {
-        self.itemId.text = cellData.itemId?.stringValue
+//        self.itemId.text = cellData.itemId?.stringValue
         self.itemTitle.text = cellData.title
+        self.itemDate.text = self.dateFormatter.stringFromDate(cellData.date!)
     }
 }

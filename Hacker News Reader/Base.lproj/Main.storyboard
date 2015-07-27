@@ -22,13 +22,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0Y-R7-lxR">
-                                            <rect key="frame" x="31" y="8" width="37.5" height="24"/>
+                                            <rect key="frame" x="31" y="6" width="37.5" height="26"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-Yo-wV8">
-                                            <rect key="frame" x="8" y="10" width="11.5" height="20.5"/>
+                                            <rect key="frame" x="8" y="8" width="11.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -59,9 +59,11 @@
                                         </view>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="zJ5-Yo-wV8" firstAttribute="top" secondItem="L0Y-R7-lxR" secondAttribute="top" id="5Ms-vr-2Wn"/>
                                         <constraint firstItem="L0Y-R7-lxR" firstAttribute="leading" secondItem="zJ5-Yo-wV8" secondAttribute="trailing" constant="12" id="6RH-Cg-vpN"/>
-                                        <constraint firstItem="L0Y-R7-lxR" firstAttribute="top" secondItem="KSZ-aI-tSs" secondAttribute="topMargin" id="9P5-8B-9m8"/>
+                                        <constraint firstItem="L0Y-R7-lxR" firstAttribute="top" secondItem="KSZ-aI-tSs" secondAttribute="topMargin" constant="-2" id="9P5-8B-9m8"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="zJ5-Yo-wV8" secondAttribute="leading" id="Dfq-Sw-fTT"/>
+                                        <constraint firstAttribute="topMargin" secondItem="zJ5-Yo-wV8" secondAttribute="top" id="KAK-aF-Od9"/>
                                         <constraint firstItem="zJ5-Yo-wV8" firstAttribute="centerY" secondItem="L0Y-R7-lxR" secondAttribute="centerY" id="XzS-kf-MVh"/>
                                         <constraint firstItem="zxH-hW-VhT" firstAttribute="top" secondItem="L0Y-R7-lxR" secondAttribute="bottom" constant="8" id="bo9-i0-4jk"/>
                                         <constraint firstItem="gqM-tF-XDp" firstAttribute="centerY" secondItem="KSZ-aI-tSs" secondAttribute="centerY" id="hAD-gq-CQC"/>
@@ -73,6 +75,8 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="5Ms-vr-2Wn"/>
+                                            <exclude reference="XzS-kf-MVh"/>
                                             <exclude reference="ocR-gM-XxN"/>
                                             <exclude reference="tmJ-te-Qof"/>
                                         </mask>

@@ -153,8 +153,18 @@ extension TopStoriesViewController {
         // Init cell data
         let cellData = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HNRItem
         
+        // TODO: handle nil cellData.url, as this will be for a 'Ask HN' type story
+        guard let itemURL = cellData.url else {
+            return
+        }
+        
+        guard itemURL.isEmpty == false else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            return
+        }
+        
         // Init Safari VC and present
-        let destinationViewController = SFSafariViewController(URL: NSURL(string: cellData.url!)!, entersReaderIfAvailable: true)
+        let destinationViewController = SFSafariViewController(URL: NSURL(string: itemURL)!, entersReaderIfAvailable: true)
         destinationViewController.delegate = self
         self.presentViewController(destinationViewController, animated: true, completion: nil)
     }

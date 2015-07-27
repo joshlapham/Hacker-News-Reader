@@ -70,6 +70,7 @@ class ItemFetchOperation: NSOperation {
             let storyAuthor = snapshot.value[FirebaseAPIKey.storyAuthor] as! String
             let storyUrl = snapshot.value[FirebaseAPIKey.storyUrl] as? String
             let storyTitle = snapshot.value[FirebaseAPIKey.storyTitle] as! String
+            let storyScore = snapshot.value[FirebaseAPIKey.storyScore] as? NSNumber
             
             // Item date
             let storyTime = snapshot.value[FirebaseAPIKey.storyTime] as! NSNumber
@@ -78,23 +79,27 @@ class ItemFetchOperation: NSOperation {
             
             // Item child IDs
             // NOTE - this is used for comment count
-            //            print(snapshot.value[FirebaseAPIKey.storyChildIds])
             let storyChildIds = snapshot.value[FirebaseAPIKey.storyChildIds] as? [AnyObject]
-            //            print(storyChildIds)
             
-            // TODO: fix commented properties
+            // NOTE - storyText is for Ask HN type items; not relevant for most top 100 items
+            let storyText = snapshot.value[FirebaseAPIKey.storyText] as? String
+            
+            // TODO: need to check return value of these properties with other Item types (polls, ask HN)
+            
+            //            let storyPollIds = snapshot.value[FirebaseAPIKey.storyPollIds]
+            //            print(storyPollIds)
+            //            NSArray *storyPollIds = [NSArray arrayWithArray:snapshot.value[@"parts"]];
+            
             //            BOOL isDeleted = (BOOL)snapshot.value[@"deleted"];
-            //            let isDeleted = snapshot.value[FirebaseAPIKey.isDeleted] as! Bool
+            //                        let isDeleted = snapshot.value[FirebaseAPIKey.isDeleted]
+            //            print(isDeleted)
             
-            //            let deadOrNot = snapshot.value[FirebaseAPIKey.deadOrNot] as! Bool
+            //                        let deadOrNot = snapshot.value[FirebaseAPIKey.deadOrNot]
+            //            print(deadOrNot)
             //            BOOL deadOrNot = (BOOL)snapshot.value[@"dead"];
             
-            //            let storyParentId = snapshot.value[FirebaseAPIKey.storyParentId] as! NSNumber
+            //                                    let storyParentId = snapshot.value[FirebaseAPIKey.storyParentId]
             //            NSNumber *storyParentId = snapshot.value[@"parent"];
-            
-            //            NSString *storyText = snapshot.value[@"text"];
-            //            NSArray *storyPollIds = [NSArray arrayWithArray:snapshot.value[@"parts"]];
-            //            NSNumber *storyScore = snapshot.value[@"score"];
             
             // Init HNRItem
             // TODO: init in private managed object context
@@ -109,23 +114,12 @@ class ItemFetchOperation: NSOperation {
             item.date = storyDate
             item.topHundredPosition = storyPosition
             item.childIds = storyChildIds
-            
-            // TODO: fix commented properties
-            //            item.itemIsDeleted = isDeleted
-            //            item.isDead = NSNumber(bool: deadOrNot)
-            //            item.parentId = storyParentId
+            item.text = storyText
+            item.score = storyScore
         })
         
-        // TODO: finish implementing these properties
-        //            // Set details
-        //            item.itemIsDeleted = [NSNumber numberWithBool:isDeleted];
-        //            item.text = storyText;
-        //            item.isDead = [NSNumber numberWithBool:deadOrNot];
-        //            item.parentId = storyParentId;
-        //            item.score = storyScore;
-        //            item.pollPartIds = storyPollIds;
-        
         // Save managed object context
+        // TODO: update syntax here with hasChanges call
         do {
             // TODO: save on private context
             try self.mainManagedObjectContext.save()

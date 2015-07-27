@@ -10,8 +10,8 @@
 		68C09A421B6455D600525058 /* HNRItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C09A401B6455D600525058 /* HNRItem+CoreDataProperties.swift */; };
 		68C09A431B6455D600525058 /* HNRItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C09A411B6455D600525058 /* HNRItem.swift */; };
 		68C09A461B64584000525058 /* TopStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C09A451B64584000525058 /* TopStoriesViewController.swift */; };
-		68C09A4A1B64BEB700525058 /* TopStoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C09A491B64BEB700525058 /* TopStoriesDataSource.swift */; };
 		68E567281B6578D000B8584A /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E567271B6578D000B8584A /* ItemCell.swift */; };
+		68EACC281B66319700646194 /* ItemFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EACC271B66319700646194 /* ItemFetchOperation.swift */; };
 		68FF1F6D1B63976200D31571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FF1F6C1B63976200D31571 /* AppDelegate.swift */; };
 		68FF1F721B63976200D31571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68FF1F701B63976200D31571 /* Main.storyboard */; };
 		68FF1F751B63976200D31571 /* Hacker_News_Reader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68FF1F731B63976200D31571 /* Hacker_News_Reader.xcdatamodeld */; };
@@ -44,8 +44,8 @@
 		68C09A411B6455D600525058 /* HNRItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HNRItem.swift; path = Models/HNRItem.swift; sourceTree = "<group>"; };
 		68C09A451B64584000525058 /* TopStoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopStoriesViewController.swift; path = "View Controllers/TopStoriesViewController.swift"; sourceTree = "<group>"; };
 		68C09A481B645AB100525058 /* HNR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HNR-Bridging-Header.h"; sourceTree = "<group>"; };
-		68C09A491B64BEB700525058 /* TopStoriesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopStoriesDataSource.swift; path = "Data Sources/TopStoriesDataSource.swift"; sourceTree = "<group>"; };
 		68E567271B6578D000B8584A /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemCell.swift; path = Cells/ItemCell.swift; sourceTree = "<group>"; };
+		68EACC271B66319700646194 /* ItemFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemFetchOperation.swift; path = Operations/ItemFetchOperation.swift; sourceTree = "<group>"; };
 		68FF1F691B63976200D31571 /* Hacker News Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker News Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68FF1F6C1B63976200D31571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68FF1F711B63976200D31571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,20 +107,20 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		68C09A4B1B64BEBB00525058 /* Data Sources */ = {
-			isa = PBXGroup;
-			children = (
-				68C09A491B64BEB700525058 /* TopStoriesDataSource.swift */,
-			);
-			name = "Data Sources";
-			sourceTree = "<group>";
-		};
 		68E567291B6578D400B8584A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				68E567271B6578D000B8584A /* ItemCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		68EACC291B66427E00646194 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				68EACC271B66319700646194 /* ItemFetchOperation.swift */,
+			);
+			name = Operations;
 			sourceTree = "<group>";
 		};
 		68FF1F601B63976200D31571 = {
@@ -149,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				68C09A441B6455DA00525058 /* Models */,
-				68C09A4B1B64BEBB00525058 /* Data Sources */,
+				68EACC291B66427E00646194 /* Operations */,
 				68E567291B6578D400B8584A /* Cells */,
 				68C09A471B64584300525058 /* View Controllers */,
 				68FF1F6C1B63976200D31571 /* AppDelegate.swift */,
@@ -364,11 +364,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68C09A4A1B64BEB700525058 /* TopStoriesDataSource.swift in Sources */,
 				68C09A461B64584000525058 /* TopStoriesViewController.swift in Sources */,
 				68C09A431B6455D600525058 /* HNRItem.swift in Sources */,
 				68FF1F6D1B63976200D31571 /* AppDelegate.swift in Sources */,
 				68E567281B6578D000B8584A /* ItemCell.swift in Sources */,
+				68EACC281B66319700646194 /* ItemFetchOperation.swift in Sources */,
 				68C09A421B6455D600525058 /* HNRItem+CoreDataProperties.swift in Sources */,
 				68FF1F751B63976200D31571 /* Hacker_News_Reader.xcdatamodeld in Sources */,
 			);

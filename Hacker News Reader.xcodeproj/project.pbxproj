@@ -536,6 +536,7 @@
 		};
 		68FF1F981B63976200D31571 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA67F65AD46D26011421A891 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Hacker News ReaderTests/Info.plist";
@@ -560,6 +561,7 @@
 		};
 		68FF1F9B1B63976200D31571 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA67F65AD46D26011421A891 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Hacker News ReaderUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

@@ -30,7 +30,7 @@ class TopStoriesViewController: UITableViewController, NSFetchedResultsControlle
         }()
     
     lazy var dateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter.new()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
@@ -68,7 +68,7 @@ extension TopStoriesViewController {
         self.fetchTopStoryIDsSignal().subscribeNext({ (topItems: AnyObject?) -> Void in
             if let topItems = topItems as? [AnyObject] {
                 // TODO: refactor NSOperation logic here to optimise fetching
-                let operationQueue = NSOperationQueue.new()
+                let operationQueue = NSOperationQueue()
                 
                 for var itemDict in topItems {
                     // Fetch item
@@ -103,7 +103,7 @@ extension TopStoriesViewController {
             // Fetch data
             firebaseRef.observeSingleEventOfType(FEventType.Value) { (snapshot: FDataSnapshot!) -> Void in
                 // Init topItems array
-                let topItems = NSMutableArray.new()
+                let topItems = NSMutableArray()
                 
                 // Loop over received data to get top story IDs
                 let enumerator = snapshot.children
@@ -234,7 +234,7 @@ extension TopStoriesViewController {
             }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch(type) {
             
         case .Insert:

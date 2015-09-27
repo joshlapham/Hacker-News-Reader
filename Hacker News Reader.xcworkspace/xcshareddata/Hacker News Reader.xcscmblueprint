@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4E43F903FD25CC9ABF07DC8AE00AED84359AE4D6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4E43F903FD25CC9ABF07DC8AE00AED84359AE4D6" : 0,
+    "FD16E8A68A74C05B54A4505CF3BABFF7E28C2A68" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E59243DD-35C0-42BB-BE81-B30B39E49EBE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4E43F903FD25CC9ABF07DC8AE00AED84359AE4D6" : "Hacker%20News%20Reader\/",
+    "FD16E8A68A74C05B54A4505CF3BABFF7E28C2A68" : "RACFirebase\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Hacker News Reader",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Hacker News Reader.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "\/Users\/jl\/Dropbox\/repos\/ios-hnreader.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4E43F903FD25CC9ABF07DC8AE00AED84359AE4D6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "\/Users\/jl\/Dropbox\/repos\/RACFirebase.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FD16E8A68A74C05B54A4505CF3BABFF7E28C2A68"
+    }
+  ]
+}

@@ -20,7 +20,7 @@ class ItemCell: UITableViewCell {
     
     // TODO: move this from here!
     lazy var dateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter.new()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         

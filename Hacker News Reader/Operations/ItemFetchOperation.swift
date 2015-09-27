@@ -103,7 +103,7 @@ class ItemFetchOperation: NSOperation {
             
             // Init HNRItem
             // TODO: init in private managed object context
-            var item = NSEntityDescription.insertNewObjectForEntityForName("HNRItem", inManagedObjectContext: self.mainManagedObjectContext) as! HNRItem
+            let item = NSEntityDescription.insertNewObjectForEntityForName("HNRItem", inManagedObjectContext: self.mainManagedObjectContext) as! HNRItem
             
             // Set properties
             item.itemId = storyId
